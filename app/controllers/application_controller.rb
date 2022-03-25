@@ -1,3 +1,6 @@
+require './config/environment'
+
+
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
@@ -5,5 +8,11 @@ class ApplicationController < Sinatra::Base
   get "/" do
     { message: "Good luck with your project!" }.to_json
   end
+  
+    
+  configure do
+    set :public_folder, 'public'
+  end
+  
 
 end
