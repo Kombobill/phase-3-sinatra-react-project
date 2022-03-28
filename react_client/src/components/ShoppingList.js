@@ -5,15 +5,18 @@ import ShoppingCategoryFilter from "./ShoppingCategoryFilter";
 import ShoppingNewItemForm from "./ShoppingNewItemForm";
 
 
-function ShoppingList ({onDeleteItem, items, categories, selectedCategory, onCategorySelected, onNewShoppingItemFormSubmit}) {
 
-    const ShoppingElements = items.map((item) => {
+function ShoppingList ({onDeleteItem, items, shoppingCategories, categoryNames, selectedCategory, onCategorySelected, onNewShoppingItemFormSubmit}) {
+
+    const shoppingElements = items.map((item) => {
+        const categoryId = item.shopping_category_id
         return (
             <ShoppingItem 
                 title={item.title}
                 key={item.title}
-                category={item.category}
+                category={categoryNames[categoryId]}
                 onDeleteItem={onDeleteItem}
+                itemId={item.id}
                 className={item}
             />
             
@@ -23,14 +26,12 @@ function ShoppingList ({onDeleteItem, items, categories, selectedCategory, onCat
 
     return (
         <div>
-            <ShoppingNewItemForm categories={categories} onNewShoppingItemFormSubmit={onNewShoppingItemFormSubmit} />
+            <ShoppingNewItemForm shoppingCategories={categoryNames} onNewShoppingItemFormSubmit={onNewShoppingItemFormSubmit} />
             <br></br>
-            <ShoppingCategoryFilter categories={categories} selectedCategory={selectedCategory} onCategorySelected={onCategorySelected} />
-            <div>{ShoppingElements}</div>
+            <ShoppingCategoryFilter shoppingCategories={categoryNames} selectedCategory={selectedCategory} onCategorySelected={onCategorySelected} />
+            <div>{shoppingElements}</div>
         </div>
         )
 }
 
 export default ShoppingList;
-
-

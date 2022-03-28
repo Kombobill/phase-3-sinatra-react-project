@@ -1,8 +1,13 @@
 import React from "react";
 
-function ShoppingItem({ category, title, onDeleteItem }) {
+function ShoppingItem({ category, title, itemId, onDeleteItem }) {
 
-    function handleClick() {onDeleteItem(title)}
+    function handleClick() {
+        fetch(`http://localhost:9292/shopping_items/${itemId}`, {
+            method: "DELETE"
+        });
+        onDeleteItem(itemId)}
+        
     return (
         <div className="shopping-item">
             <div className={"shopping-cat"}>{category}</div>

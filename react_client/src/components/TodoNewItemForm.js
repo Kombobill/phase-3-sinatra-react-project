@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 
 function TodoNewItemForm({ todoCategories, onNewTodoFormSubmit}) {
-    const [newItemCategory, setNewItemCategory] = useState("")
     const [newItemTitle, setNewItemTitle] = useState("")
     const [newItemCategoryId, setNewItemCategoryId] = useState("")
 
@@ -13,7 +12,6 @@ function TodoNewItemForm({ todoCategories, onNewTodoFormSubmit}) {
     })
 
     function handleSelectedCategory(event) {
-        setNewItemCategory(event.target.value)
         setNewItemCategoryId(todoCategories.indexOf(event.target.value))
     }
 

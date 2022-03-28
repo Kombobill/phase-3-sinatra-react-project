@@ -1,9 +1,9 @@
 import React from "react";
 
 
-function ShoppingCategoryFilter({ categories, selectedCategory, onCategorySelected }) {
+function ShoppingCategoryFilter({ shoppingCategories, selectedCategory, onCategorySelected }) {
     
-    const categoryButtons = categories.map((category) => {
+    const categoryButtons = shoppingCategories.map((category) => {
         const className = (category === selectedCategory ? "selected" : null)
         return (<button
             key={category}

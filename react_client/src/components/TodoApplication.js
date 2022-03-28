@@ -3,7 +3,6 @@ import TodoList from "./TodoList"
 import "./TodoApplication.css";
 
 
-
 function TodoApplication() {
   const [todos, setTodos] = useState([])
   const [selectedCategory, setSelectedCategory] = useState("All")
@@ -14,7 +13,6 @@ function TodoApplication() {
     fetch("http://localhost:9292/todos")
       .then((r) => r.json())
       .then(function(data) {
-        
         setTodos(data)});
   }, []);
 
@@ -63,58 +61,3 @@ function TodoApplication() {
 }
 
 export default TodoApplication;
-
-
-// fetch(`http://localhost:4000/messages/${id}`, {
-//   method: "PATCH",
-//   headers: {
-//     "Content-Type": "application/json",
-//   },
-//   body: JSON.stringify({
-//     body: messageBody,
-//   }),
-// })
-//   .then((r) => r.json())
-//   .then((updatedMessage) => onUpdateMessage(updatedMessage));
-// }
-
-// function handleDeleteClick() {
-//   fetch(`http://localhost:4000/messages/${id}`, {
-//     method: "DELETE",
-//   });
-
-//   onMessageDelete(id);
-// }
-
-
-
-// fetch("http://localhost:4000/messages", {
-//   method: "POST",
-//   headers: {
-//     "Content-Type": "application/json",
-//   },
-//   body: JSON.stringify({
-//     username: currentUser.username,
-//     body: body,
-//   }),
-// })
-//   .then((r) => r.json())
-//   .then((newMessage) => {
-//     onAddMessage(newMessage);
-//     setBody("");
-//   });
-// }
-
-// return (
-// <form className="new-message" onSubmit={handleSubmit}>
-//   <input
-//     type="text"
-//     name="body"
-//     autoComplete="off"
-//     value={body}
-//     onChange={(e) => setBody(e.target.value)}
-//   />
-//   <button type="submit">Send</button>
-// </form>
-// );
-// }
