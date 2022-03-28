@@ -3,15 +3,14 @@ import './App.css';
 import NavBar from "./NavBar";
 import TodoApplication from './TodoApplication';
 import ShoppingApplication from "./ShoppingApplication";
-import Timer from "./Timer";
-import Api from "./Api";
+
 import { Route, Switch } from "react-router-dom"
 
 function App() {
   return (
     <div className="App">
-      { /* working title ?? */ }
-      <h1>Productivity Ninja</h1>
+     
+      <h1>List Metaverse</h1>
       <NavBar />
        <Switch>
           <Route path="/todo-list">
@@ -21,19 +20,7 @@ function App() {
           <Route path="/shopping-list">
             <ShoppingApplication/>
           </Route>
-
-          <Route path="/timer">
-            <Timer />
-          </Route>
-
-          <Route path="/">
-            <Api />
-          </Route>
-
       </Switch>
-
-      
-
     </div>
     
   );

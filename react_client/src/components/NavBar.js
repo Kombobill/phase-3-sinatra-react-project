@@ -22,14 +22,8 @@ function NavBar() {
       };
 
     return (<div className="navbar">
-        <NavLink
-            to="/api"
-            exact
-            style={linkStyles}
-            activeStyle={activeStyles}
-            className="navlink"
-        >Home
-        </NavLink>
+        
+       
         
         <NavLink
             to="/todo-list"
@@ -48,15 +42,6 @@ function NavBar() {
             activeStyle={activeStyles}
             className="navlink"
         >Shopping List
-        </NavLink>
-
-        <NavLink
-            to="/timer"
-            exact
-            style={linkStyles}
-            activeStyle={activeStyles}
-            className="navlink"
-        >Pomodoro Timer
         </NavLink>
 
     </div>)
