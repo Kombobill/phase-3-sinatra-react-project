@@ -6,6 +6,7 @@ import ShoppingNewItemForm from "./ShoppingNewItemForm";
 
 
 function ShoppingList ({onDeleteItem, items, categories, selectedCategory, onCategorySelected, onNewShoppingItemFormSubmit}) {
+
     const ShoppingElements = items.map((item) => {
         return (
             <ShoppingItem 

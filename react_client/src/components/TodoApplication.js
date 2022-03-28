@@ -1,13 +1,32 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import TodoList from "./TodoList"
-import {tasks, todoCategories} from "../data"
 import "./TodoApplication.css";
 
 
 
 function TodoApplication() {
-  const [todos, setTodos] = useState(tasks)
+  const [todos, setTodos] = useState([])
   const [selectedCategory, setSelectedCategory] = useState("All")
+  const [todoCategories, setTodoCategories] = useState([])
+  const [categoryNames, setCategoryNames] = useState([])
+
+  useEffect(() => {
+    fetch("http://localhost:9292/todos")
+      .then((r) => r.json())
+      .then(function(data) {
+        
+        setTodos(data)});
+  }, []);
+
+  useEffect(() => {
+    fetch("http://localhost:9292/todo_categories")
+      .then((r) => r.json())
+      .then(function(data) {
+        setTodoCategories(data)
+        const categories_arr = data.map(e => e.name)
+        categories_arr.unshift("All")
+        setCategoryNames(categories_arr)});
+  }, []);
 
   function handleDeleteTodo(text) {
     setTodos(todos.filter((element) => (element.title !== text)))
@@ -21,25 +40,29 @@ function TodoApplication() {
     setTodos([...todos, newTodo])
   }
   
-  const selectedTodos = todos.filter((todo) => (todo.category === selectedCategory || selectedCategory === "All"))
 
+  const selectedCategoryObj = todoCategories.find(obj => {
+    return obj.name === selectedCategory
+  })
+
+  let selectedTodos = []
+  if (selectedCategory === "All") {
+    selectedTodos = todos
+  } else {
+    selectedTodos = todos.filter((todo) => 
+    (todo.todo_category_id === selectedCategoryObj.id))
+  }
 
   return (
     <div className="App">
       <h2>Todo List</h2>
-      <TodoList onDeleteTodo={handleDeleteTodo} todos={selectedTodos} categories={todoCategories} selectedCategory={selectedCategory} onCategorySelected={handleCategorySelected} onNewTodoFormSubmit={addNewTodo}></TodoList>
+      <TodoList onDeleteTodo={handleDeleteTodo} todos={selectedTodos} todoCategories={todoCategories} categoryNames={categoryNames} selectedCategory={selectedCategory} onCategorySelected={handleCategorySelected} onNewTodoFormSubmit={addNewTodo}></TodoList>
       </div>
 
   );
 }
 
 export default TodoApplication;
-
-// useEffect(() => {
-//   fetch("http://localhost:4000/messages")
-//     .then((r) => r.json())
-//     .then((messages) => setMessages(messages));
-// }, []);
 
 
 // fetch(`http://localhost:4000/messages/${id}`, {

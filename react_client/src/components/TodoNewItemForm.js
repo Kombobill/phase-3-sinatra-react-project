@@ -1,10 +1,11 @@
 import React, {useState} from "react";
 
-function TodoNewItemForm({ categories, onNewTodoFormSubmit}) {
+function TodoNewItemForm({ todoCategories, onNewTodoFormSubmit}) {
     const [newItemCategory, setNewItemCategory] = useState("")
     const [newItemTitle, setNewItemTitle] = useState("")
+    const [newItemCategoryId, setNewItemCategoryId] = useState("")
 
-    const categoriesWithoutAll = categories.filter((category) => (category !== "All"))
+    const categoriesWithoutAll = todoCategories.filter((category) => (category !== "All"))
     const options = categoriesWithoutAll.map((category) => {
         return (
             <option key={category} value={category}>{category}</option>
@@ -13,6 +14,7 @@ function TodoNewItemForm({ categories, onNewTodoFormSubmit}) {
 
     function handleSelectedCategory(event) {
         setNewItemCategory(event.target.value)
+        setNewItemCategoryId(todoCategories.indexOf(event.target.value))
     }
 
     function handleTitleChange(event) {
@@ -21,13 +23,23 @@ function TodoNewItemForm({ categories, onNewTodoFormSubmit}) {
 
     function handleSubmit(event) {
         event.preventDefault()
-        const newTodo = {
-            title: newItemTitle,
-            category: newItemCategory
-        }
-        onNewTodoFormSubmit(newTodo)
-        setNewItemTitle("")
 
+        fetch("http://localhost:9292/todos", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              title: newItemTitle,
+              todo_category_id: newItemCategoryId,
+              completed: false
+            }),
+          })
+            .then((r) => r.json())
+            .then((newTodo) => {
+                onNewTodoFormSubmit(newTodo);
+                setNewItemTitle("");
+            });
     }
    
     return (

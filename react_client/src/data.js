@@ -1,5 +1,5 @@
 
-export const todoCategories = ["All", "Work", "Home", "Finance"]
+// export const todoCategories = ["All", "Work", "Home", "Finance"]
 
 export const shoppingCategories = ["All", "Diary", "Frozen", "Bakery", "Fruit/Veg", "Toiletries", "Household", "Cupboard"]
 

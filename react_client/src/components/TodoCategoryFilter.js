@@ -1,10 +1,12 @@
 import React from "react";
 
 
-function TodoCategoryFilter({ categories, selectedCategory, onCategorySelected }) {
-    
-    const categoryButtons = categories.map((category) => {
+function TodoCategoryFilter({ todoCategories, selectedCategory, onCategorySelected }) {
+   
+   
+    const categoryButtons = todoCategories.map((category) => {
         const className = (category === selectedCategory ? "selected" : null)
+       
         return (<button
             key={category}
             onClick={() => (onCategorySelected(category))}

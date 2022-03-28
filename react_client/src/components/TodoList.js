@@ -6,13 +6,16 @@ import TodoNewItemForm from "./TodoNewItemForm";
 
 
 
-function TodoList ({onDeleteTodo, todos, categories, selectedCategory, onCategorySelected, onNewTodoFormSubmit}) {
+function TodoList ({onDeleteTodo, todos, todoCategories, categoryNames, selectedCategory, onCategorySelected, onNewTodoFormSubmit}) {
+
+
     const todoElements = todos.map((todo) => {
+        const categoryId = todo.todo_category_id
         return (
             <TodoItem
                 title={todo.title}
                 key={todo.title}
-                category={todo.category}
+                category={categoryNames[categoryId]}
                 onDeleteTodo={onDeleteTodo}
                 className={todo}
             />
@@ -21,9 +24,9 @@ function TodoList ({onDeleteTodo, todos, categories, selectedCategory, onCategor
 
     return (
         <div>
-            <TodoNewItemForm categories={categories} onNewTodoFormSubmit={onNewTodoFormSubmit} />
+            <TodoNewItemForm todoCategories={categoryNames} onNewTodoFormSubmit={onNewTodoFormSubmit} />
             <br></br>
-            <TodoCategoryFilter categories={categories} selectedCategory={selectedCategory} onCategorySelected={onCategorySelected} />
+            <TodoCategoryFilter todoCategories={categoryNames} selectedCategory={selectedCategory} onCategorySelected={onCategorySelected} />
             <div>{todoElements}</div>
         </div>
         )
