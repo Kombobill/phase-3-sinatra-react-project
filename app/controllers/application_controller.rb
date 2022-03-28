@@ -118,12 +118,6 @@ class ApplicationController < Sinatra::Base
     todo_category.to_json
   end
 
-
-
-
-
-
-
   get '/shopping_categories' do
     shopping_categories = ShoppingCategory.all
     shopping_categories.to_json
@@ -155,13 +149,8 @@ class ApplicationController < Sinatra::Base
     shopping_category.to_json
   end
 
-
-
-
-    
   configure do
     set :public_folder, 'public'
-  end
-  
+  end  
 
 end
