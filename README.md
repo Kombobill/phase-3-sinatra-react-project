@@ -19,6 +19,6 @@ The application uses Active Record to interact with the database and API routes 
 
 The frontend application is located in the folder called "react_client"
 'package.json' contains dependencies for the React component
-  -> command: npm install 
+  - command: npm install 
 'Gemfile' contains dependencies for the backend component
-  -> command: bundle install
+  - command: bundle install
