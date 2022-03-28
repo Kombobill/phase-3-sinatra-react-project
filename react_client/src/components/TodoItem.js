@@ -1,8 +1,13 @@
 import React from "react";
 
-function TodoItem({ category, title, onDeleteTodo }) {
+function TodoItem({ category, title, todoId, onDeleteTodo }) {
 
-    function handleClick() {onDeleteTodo(title)}
+    function handleClick() {
+        fetch(`http://localhost:9292/todos/${todoId}`, {
+            method: "DELETE"
+        });
+        onDeleteTodo(todoId)}
+
     return (
         <div className="todo">
             <div className={"todo-cat"}>{category}</div>

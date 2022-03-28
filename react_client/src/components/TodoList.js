@@ -17,6 +17,7 @@ function TodoList ({onDeleteTodo, todos, todoCategories, categoryNames, selected
                 key={todo.title}
                 category={categoryNames[categoryId]}
                 onDeleteTodo={onDeleteTodo}
+                todoId={todo.id}
                 className={todo}
             />
         )

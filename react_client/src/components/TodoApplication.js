@@ -28,8 +28,8 @@ function TodoApplication() {
         setCategoryNames(categories_arr)});
   }, []);
 
-  function handleDeleteTodo(text) {
-    setTodos(todos.filter((element) => (element.title !== text)))
+  function handleDeleteTodo(key) {
+    setTodos(todos.filter((element) => (element.id !== key)))
   }
 
   function handleCategorySelected(category) {
