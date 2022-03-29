@@ -1,11 +1,47 @@
 require './config/environment'
 
-
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
 
   configure do
     set :public_folder, 'public'
+  end
+
+  get '/users' do
+    users = User.all
+    users.to_json
+  end
+
+  get '/users/:id' do
+    user = User.find(params[:id])
+    user.to_json
+  end
+
+  delete '/users/:id' do
+    user = User.find(params[:id])
+    user.destroy
+    user.to_json
+  end
+
+  post '/users' do
+    user = User.create(
+      username: params[:name],
+      email_address: params[:email_address],
+      password: params[:password],
+      budget: params[:budeget]
+    )
+    user.to_json
+  end
+
+  patch '/users/:id' do
+    user = User.find(params[:id])
+    user.update(
+      username: params[:name],
+      email_address: params[:email_address],
+      password: params[:password],
+      budget: params[:budeget]
+    )
+    user.to_json
   end
 
   get '/todos' do

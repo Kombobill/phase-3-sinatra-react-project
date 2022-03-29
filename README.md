@@ -4,7 +4,7 @@
 
 This project includes a web API built with Sinatra and Active Record that supports a frontend React application.
 
-The application enables you make two differnt types of lists: a todo list and a shopping list.
+The application enables you make two different types of lists: a todo list and a shopping list.
 Items on these lists can be tagged with different categories in a one-to-many relationship:
   - each todo item belongs to a todo category and each todo category can have many todo items.
   - similarly, each shopping item belongs to a shopping category and each shopping category can have many shopping items.
@@ -21,5 +21,5 @@ The frontend application is located in the folder called "react_client"
 
 - 'package.json' contains dependencies for the React component
   - command: npm install 
-- t'Gemfile' contains dependencies for the backend component
+- 'Gemfile' contains dependencies for the backend component
   - command: bundle install

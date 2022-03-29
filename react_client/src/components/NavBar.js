@@ -23,7 +23,15 @@ function NavBar() {
 
     return (<div className="navbar">
         
-       
+    <NavLink
+            to="/"
+            exact
+            style={linkStyles}
+            activeStyle={activeStyles}
+            className="navlink"
+        >Home
+
+        </NavLink>
         
         <NavLink
             to="/todo-list"
