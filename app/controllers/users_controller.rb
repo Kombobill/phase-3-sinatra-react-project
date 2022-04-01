@@ -18,12 +18,17 @@ class UsersController < ApplicationController
   # POST: /users
   post '/users' do
     user = User.create(
-      username: params[:name],
+      username: params[:username],
       email_address: params[:email_address],
       password: params[:password],
       budget: params[:budget]
     )
     user.to_json
+    if User.find_by_email_address(params[:email_address])
+      user.to_json
+    else
+      {error: "No new record created"}.to_json
+    end
   end
 
   # GET: /users/5

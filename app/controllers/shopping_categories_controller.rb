@@ -22,9 +22,7 @@ class ShoppingCategoriesController < ApplicationController
   # PATCH: /shopping_categories/5
   patch '/shopping_categories/:id' do
     shopping_category = ShoppingCategory.find_by_id(params[:id])
-    shopping_category.update(
-      name: params[:name]
-    )
+    shopping_category.update(name: params[:name])
     shopping_category.to_json
   end
 

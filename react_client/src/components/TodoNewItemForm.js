@@ -4,6 +4,7 @@ import { UserContext } from "./UserContext";
 function TodoNewItemForm({ todoCategories, onNewTodoFormSubmit}) {
     const [newItemTitle, setNewItemTitle] = useState("")
     const [newItemCategoryId, setNewItemCategoryId] = useState("")
+    const [newItemUserEmail, setNewItemUserEmail] = useState("")
     const {user, setUser} = useContext(UserContext);
 
     const categoriesWithoutAll = todoCategories.filter((category) => (category !== "All"))
@@ -21,6 +22,10 @@ function TodoNewItemForm({ todoCategories, onNewTodoFormSubmit}) {
         setNewItemTitle(event.target.value)
     }
 
+    function handleEmailChange(event) {
+        setNewItemUserEmail(event.target.value)
+    }
+
     function handleSubmit(event) {
         event.preventDefault()
 
@@ -32,6 +37,7 @@ function TodoNewItemForm({ todoCategories, onNewTodoFormSubmit}) {
             body: JSON.stringify({
               title: newItemTitle,
               todo_category_id: newItemCategoryId,
+              email_address: newItemUserEmail,
               completed: false
             }),
           })
@@ -48,6 +54,9 @@ function TodoNewItemForm({ todoCategories, onNewTodoFormSubmit}) {
         <form onSubmit={handleSubmit} className="new-todo-form">
             <label>
                 Title: <input type="text" onChange={handleTitleChange} value={newItemTitle}></input>
+            </label>
+            <label>
+                Email: <input type="email" onChange={handleEmailChange} value={newItemUserEmail}></input>
             </label>
                 <label> Category: <select onChange={handleSelectedCategory}>
                 <option selected disabled hidden>Choose a Category</option>

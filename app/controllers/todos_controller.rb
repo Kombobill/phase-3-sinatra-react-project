@@ -7,13 +7,22 @@ class TodosController < ApplicationController
 
   # POST: /todos
   post '/todos' do
-    todo = Todo.create(
-      title: params[:title],
-      todo_category_id: params[:todo_category_id],
-      completed: false
-    )
-    todo.to_json
+    user = User.find_by(email_address: params[:email_address])
+
+    todo = Todo.new(
+                title: params[:title],
+                user_id: user.id,
+                todo_category_id: params[:todo_category_id],
+                completed: false
+              )
+    if todo.save
+      todo.to_json
+    else
+      {error: "user not found".to_json}
+    end
+  
   end
+
 
   # GET: /todos/5
   get '/todos/:id' do

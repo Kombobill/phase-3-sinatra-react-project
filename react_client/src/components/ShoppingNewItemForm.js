@@ -4,6 +4,8 @@ function ShoppingNewItemForm({ shoppingCategories, onNewShoppingItemFormSubmit})
    
     const [newItemTitle, setNewItemTitle] = useState("")
     const [newItemCategoryId, setNewItemCategoryId] = useState("")
+    const [newItemUserEmail, setNewItemUserEmail] = useState("")
+
     const categoriesWithoutAll = shoppingCategories.filter((category) => (category !== "All"))
     const options = categoriesWithoutAll.map((category) => {
         return (
@@ -19,6 +21,10 @@ function ShoppingNewItemForm({ shoppingCategories, onNewShoppingItemFormSubmit})
         setNewItemTitle(event.target.value)
     }
 
+    function handleEmailChange(event) {
+        setNewItemUserEmail(event.target.value)
+    }
+
     function handleSubmit(event) {
         event.preventDefault()
         fetch("http://localhost:9292/shopping_items", {
@@ -28,7 +34,8 @@ function ShoppingNewItemForm({ shoppingCategories, onNewShoppingItemFormSubmit})
             },
             body: JSON.stringify({
               title: newItemTitle,
-              shopping_category_id: newItemCategoryId
+              shopping_category_id: newItemCategoryId,
+              email_address: newItemUserEmail
             }),
           })
             .then((r) => r.json())
@@ -43,6 +50,9 @@ function ShoppingNewItemForm({ shoppingCategories, onNewShoppingItemFormSubmit})
         <form onSubmit={handleSubmit} className="new-shopping-item-form">
             <label>
                 Title: <input type="text" onChange={handleTitleChange} value={newItemTitle}></input>
+            </label>
+            <label>
+                Email: <input type="email" onChange={handleEmailChange} value={newItemUserEmail}></input>
             </label>
                 <label> Category: <select onChange={handleSelectedCategory}>
                 <option value="default" selected disabled hidden>Choose a Category</option>

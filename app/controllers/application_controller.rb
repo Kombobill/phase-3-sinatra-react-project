@@ -15,17 +15,6 @@ class ApplicationController < Sinatra::Base
 
 end
 
-#   get '/todos/:id' do
-#     todo = Todo.find(params[:id])
-#     todo.to_json
-#   end
-
-#   delete '/todos/:id' do
-#     todo = Todo.find(params[:id])
-#     # if found do this, otherwise 
-#     todo.destroy
-#     todo.to_json
-#   end
 
 #   post '/todos' do
  
@@ -45,15 +34,4 @@ end
 #     }.to_json
 
 #     end
-#   end
-
-
-#   post '/shopping_items' do
-#     shopping_item = ShoppingItem.create(
-#       title: params[:title],
-#       shopping_category_id: params[:shopping_category_id],
-#       price: params[:price],
-#       amount: params[:amount]
-#     )
-#     shopping_item.to_json
 #   end
