@@ -11,12 +11,11 @@ function TodoApplication() {
   const [categoryNames, setCategoryNames] = useState([]);
   const {user, setUser} = useContext(UserContext);
   
-
   useEffect(() => {
     fetch("http://localhost:9292/todos")
       .then((r) => r.json())
       .then(function(data) {
-        setTodos(data)});
+        setTodos(data.filter((todo)=>(todo.user_id === user.id)))});
   }, []);
 
   useEffect(() => {
@@ -28,6 +27,8 @@ function TodoApplication() {
         categories_arr.unshift("All")
         setCategoryNames(categories_arr)});
   }, []);
+
+
 
   function handleDeleteTodo(key) {
     setTodos(todos.filter((element) => (element.id !== key)))
@@ -41,6 +42,7 @@ function TodoApplication() {
     setTodos([...todos, newTodo])
   }
   
+
 
   const selectedCategoryObj = todoCategories.find(obj => {
     return obj.name === selectedCategory

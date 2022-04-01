@@ -15,9 +15,9 @@ function ShoppingApplication() {
           .then((r) => r.json())
           .then(function(data) {
             
-            setItems(data)});
+            setItems(data.filter((item) => (item.user_id === user.id)))});
       }, []);
-
+    
    
       useEffect(() => {
         fetch("http://localhost:9292/shopping_categories")

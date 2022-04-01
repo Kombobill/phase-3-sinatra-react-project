@@ -19,8 +19,6 @@ function ShoppingList ({onDeleteItem, items, shoppingCategories, categoryNames, 
                 itemId={item.id}
                 className={item}
             />
-            
-           
         )
     })
 

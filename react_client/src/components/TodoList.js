@@ -4,10 +4,7 @@ import TodoItem from "./TodoItem";
 import TodoCategoryFilter from "./TodoCategoryFilter";
 import TodoNewItemForm from "./TodoNewItemForm";
 
-
-
 function TodoList ({onDeleteTodo, todos, todoCategories, categoryNames, selectedCategory, onCategorySelected, onNewTodoFormSubmit}) {
-
 
     const todoElements = todos.map((todo) => {
         const categoryId = todo.todo_category_id
