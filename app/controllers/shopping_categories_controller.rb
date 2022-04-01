@@ -12,7 +12,11 @@ class ShoppingCategoriesController < ApplicationController
 
   # GET: /shopping_categories/5
   get '/shopping_categories/:id' do
-    ShoppingCategory.find_by_id(params[:id]).to_json
+    if ShoppingCategory.find_by_id(params[:id])
+      ShoppingCategory.find_by_id(params[:id]).to_json
+    else
+      {error: "Record not found with id #{params['id']}"}.to_json
+    end
   end
 
   # PATCH: /shopping_categories/5
@@ -27,7 +31,11 @@ class ShoppingCategoriesController < ApplicationController
   # DELETE: /shopping_categories/5/delete
   delete '/shopping_categories/:id' do
     shopping_category = ShoppingCategory.find_by_id(params[:id])
-    shopping_category.destroy
-    shopping_category.to_json
+    if shopping_category
+      shopping_category.destroy
+      {message: "Record successfully destroyed"}.to_json
+    else
+      {error: "Record not found with id #{params['id']}"}.to_json
+    end
   end
 end

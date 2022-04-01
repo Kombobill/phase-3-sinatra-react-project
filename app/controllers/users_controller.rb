@@ -28,7 +28,11 @@ class UsersController < ApplicationController
 
   # GET: /users/5
   get '/users/:id' do
-    User.find_by_id(params[:id]).to_json
+    if User.find_by_id(params[:id])
+      User.find_by_id(params[:id]).to_json
+    else
+      {error: "Record not found with id #{params['id']}"}.to_json
+    end
   end
 
   get '/users/:id/todos' do
@@ -56,7 +60,11 @@ class UsersController < ApplicationController
   # DELETE: /users/5/delete
   delete '/users/:id' do
     user = User.find_by_id(params[:id])
-    user.destroy
-    user.to_json
+    if user
+      user.destroy
+      {message: "Record successfully destroyed"}.to_json
+    else
+      {error: "Record not found with id #{params['id']}"}.to_json
+    end
   end
 end

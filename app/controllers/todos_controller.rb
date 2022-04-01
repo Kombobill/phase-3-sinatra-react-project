@@ -17,7 +17,11 @@ class TodosController < ApplicationController
 
   # GET: /todos/5
   get '/todos/:id' do
-    Todo.find_by_id(params[:id]).to_json
+    if Todo.find_by_id(params[:id])
+      Todo.find_by_id(params[:id]).to_json
+    else
+      {error: "Record not found with id #{params['id']}"}.to_json
+    end
   end
 
   # PATCH: /todos/5
@@ -34,7 +38,11 @@ class TodosController < ApplicationController
   # DELETE: /todos/5/delete
   delete '/todos/:id' do
     todo = Todo.find_by_id(params[:id])
-    todo.destroy
-    todo.to_json
+    if todo
+      todo.destroy
+      {message: "Record successfully destroyed"}.to_json
+    else
+      {error: "Record not found with id #{params['id']}"}.to_json
+    end
   end
 end
