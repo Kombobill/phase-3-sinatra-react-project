@@ -1,10 +1,13 @@
 class UsersController < ApplicationController
 
+
+
+
   post '/login' do
     user = User.find_by_email_address(params[:email_address])
     if user&.authenticate(params[:password])
       session[:user_id] = user.id
-      user.to_json(include: :todos)
+      user.to_json(include: [:todos, :shopping_items])
     else
       {error: "incorrect login credentials"}.to_json
     end
@@ -12,8 +15,7 @@ class UsersController < ApplicationController
 
   # GET: /users
   get '/users' do
-    users = User.all
-    users.to_json
+    User.all.to_json
   end
 
   # POST: /users
@@ -29,8 +31,7 @@ class UsersController < ApplicationController
 
   # GET: /users/5
   get '/users/:id' do
-    user = User.find_by_id(params[:id])
-    user.to_json
+    User.find_by_id(params[:id]).to_json
   end
 
   # PATCH: /users/5
@@ -52,3 +53,36 @@ class UsersController < ApplicationController
     user.to_json
   end
 end
+
+
+
+
+
+
+
+
+#   get '/users/:id' do
+#     user = User.find_by_id(params[:id])
+#     user.to_json
+#   end
+
+#   get '/users/:id/todos' do
+#     user = User.find_by_id(params[:id])
+#     user.todos.to_json
+#   end
+
+#   delete '/users/:id' do
+#     user = User.find_by_id(params[:id])
+#     user.destroy
+#     user.to_json
+#   end
+
+#   post '/users' do
+#     user = User.create(
+#       username: params[:name],
+#       email_address: params[:email_address],
+#       password: params[:password],
+#       budget: params[:budeget]
+#     )
+#     user.to_json
+#   end

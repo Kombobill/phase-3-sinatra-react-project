@@ -2,8 +2,7 @@ class ShoppingItemsController < ApplicationController
 
   # GET: /shopping_items
   get '/shopping_items' do
-    shopping_items = ShoppingItem.all
-    shopping_items.to_json
+    ShoppingItem.all.to_json
   end
 
   # POST: /shopping_items
@@ -19,8 +18,7 @@ class ShoppingItemsController < ApplicationController
 
   # GET: /shopping_items/5
   get '/shopping_items/:id' do
-    shopping_item = ShoppingItem.find_by_id(params[:id])
-    shopping_item.to_json
+    ShoppingItem.find_by_id(params[:id]).to_json
   end
 
   # PATCH: /shopping_items/5

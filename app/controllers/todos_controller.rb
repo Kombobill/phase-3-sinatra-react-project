@@ -2,8 +2,7 @@ class TodosController < ApplicationController
 
   # GET: /todos
   get '/todos' do
-    todos = Todo.all
-    todos.to_json
+    Todo.all.to_json
   end
 
   # POST: /todos
@@ -18,8 +17,7 @@ class TodosController < ApplicationController
 
   # GET: /todos/5
   get '/todos/:id' do
-    todo = Todo.find_by_id(params[:id])
-    todo.to_json
+    Todo.find_by_id(params[:id]).to_json
   end
 
   # PATCH: /todos/5
