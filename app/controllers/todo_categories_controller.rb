@@ -31,7 +31,7 @@ class TodoCategoriesController < ApplicationController
     todo_category = TodoCategory.find_by_id(params[:id])
     if todo_category
       todo_category.destroy
-      {message: "Record successfully destroyed"}.to_json
+      todo_category.to_json
     else
       {error: "Record not found with id #{params['id']}"}.to_json
     end

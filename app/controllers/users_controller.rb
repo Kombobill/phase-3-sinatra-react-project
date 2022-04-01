@@ -67,7 +67,7 @@ class UsersController < ApplicationController
     user = User.find_by_id(params[:id])
     if user
       user.destroy
-      {message: "Record successfully destroyed"}.to_json
+      user.to_json
     else
       {error: "Record not found with id #{params['id']}"}.to_json
     end

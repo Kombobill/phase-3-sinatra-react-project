@@ -49,7 +49,7 @@ class TodosController < ApplicationController
     todo = Todo.find_by_id(params[:id])
     if todo
       todo.destroy
-      {message: "Record successfully destroyed"}.to_json
+      todo.to_json
     else
       {error: "Record not found with id #{params['id']}"}.to_json
     end

@@ -31,7 +31,7 @@ class ShoppingCategoriesController < ApplicationController
     shopping_category = ShoppingCategory.find_by_id(params[:id])
     if shopping_category
       shopping_category.destroy
-      {message: "Record successfully destroyed"}.to_json
+      shopping_category.to_json
     else
       {error: "Record not found with id #{params['id']}"}.to_json
     end
