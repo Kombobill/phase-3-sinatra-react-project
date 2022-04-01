@@ -1,8 +1,5 @@
 class UsersController < ApplicationController
 
-
-
-
   post '/login' do
     user = User.find_by_email_address(params[:email_address])
     if user&.authenticate(params[:password])
@@ -34,6 +31,16 @@ class UsersController < ApplicationController
     User.find_by_id(params[:id]).to_json
   end
 
+  get '/users/:id/todos' do
+    user = User.find_by_id(params[:id])
+    user.todos.to_json
+  end
+
+  get '/users/:id/shopping_items' do
+    user = User.find_by_id(params[:id])
+    user.shopping_items.to_json
+  end
+
   # PATCH: /users/5
   patch '/users/:id' do
     user = User.find_by_id(params[:id])
@@ -53,36 +60,3 @@ class UsersController < ApplicationController
     user.to_json
   end
 end
-
-
-
-
-
-
-
-
-#   get '/users/:id' do
-#     user = User.find_by_id(params[:id])
-#     user.to_json
-#   end
-
-#   get '/users/:id/todos' do
-#     user = User.find_by_id(params[:id])
-#     user.todos.to_json
-#   end
-
-#   delete '/users/:id' do
-#     user = User.find_by_id(params[:id])
-#     user.destroy
-#     user.to_json
-#   end
-
-#   post '/users' do
-#     user = User.create(
-#       username: params[:name],
-#       email_address: params[:email_address],
-#       password: params[:password],
-#       budget: params[:budeget]
-#     )
-#     user.to_json
-#   end
