@@ -78,5 +78,17 @@ ShoppingItem.create(title: "Pasta", shopping_category_id: 5, price: 80.00, amoun
 ShoppingItem.create(title: "Shampoo", shopping_category_id: 6, price: 1.45, amount: 1, user_id: 2)
 ShoppingItem.create(title: "stain remover", shopping_category_id: 7, price: 2.00, amount: 1, user_id: 2)
 ShoppingItem.create(title: "Washing up liquid", shopping_category_id: 7, price: 4.55, amount: 1, user_id: 2)
+ShoppingItem.create(title: "Aubergines", shopping_category_id: 1, price: 1.15, amount: 3, user_id: 3)
+ShoppingItem.create(title: "Red Onions", shopping_category_id: 1, price: 1.00, amount: 1, user_id: 3)
+ShoppingItem.create(title: "Ice", shopping_category_id: 2, price: 1.00, amount: 1, user_id: 3)
+ShoppingItem.create(title: "Cheddar", shopping_category_id: 3, price: 1.60, amount: 1, user_id: 3)
+ShoppingItem.create(title: "Parmesan", shopping_category_id: 3, price: 0.95, amount: 2, user_id: 3)
+ShoppingItem.create(title: "Waffles", shopping_category_id: 4, price: 1.00, amount: 2, user_id: 3)
+ShoppingItem.create(title: "Muffins", shopping_category_id: 4, price: 1.20, amount: 2, user_id: 3)
+ShoppingItem.create(title: "Hot Chocolate", shopping_category_id: 5, price: 3.50, amount: 2, user_id: 3)
+ShoppingItem.create(title: "Rice", shopping_category_id: 5, price: 80.00, amount: 1, user_id: 3)
+ShoppingItem.create(title: "Hand Soap", shopping_category_id: 6, price: 1.45, amount: 1, user_id: 3)
+ShoppingItem.create(title: "Fabric Softener", shopping_category_id: 7, price: 2.00, amount: 1, user_id: 3)
+ShoppingItem.create(title: "Kitchen Foil", shopping_category_id: 7, price: 4.55, amount: 1, user_id: 3)
 
 puts "✅ Done seeding!"
