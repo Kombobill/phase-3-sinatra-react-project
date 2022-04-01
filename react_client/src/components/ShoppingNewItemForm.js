@@ -49,7 +49,7 @@ function ShoppingNewItemForm({ shoppingCategories, onNewShoppingItemFormSubmit})
                         {options}
                     </select>
                 </label>
-            <input type="submit" value="Add New Item"></input>
+            <input type="submit" value="Add Item"></input>
         </form>
         </div>
     )

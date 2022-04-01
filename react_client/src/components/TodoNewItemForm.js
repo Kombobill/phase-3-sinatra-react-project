@@ -1,8 +1,10 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
+import { UserContext } from "./UserContext";
 
 function TodoNewItemForm({ todoCategories, onNewTodoFormSubmit}) {
     const [newItemTitle, setNewItemTitle] = useState("")
     const [newItemCategoryId, setNewItemCategoryId] = useState("")
+    const {user, setUser} = useContext(UserContext);
 
     const categoriesWithoutAll = todoCategories.filter((category) => (category !== "All"))
     const options = categoriesWithoutAll.map((category) => {
@@ -38,6 +40,7 @@ function TodoNewItemForm({ todoCategories, onNewTodoFormSubmit}) {
                 onNewTodoFormSubmit(newTodo);
                 setNewItemTitle("");
             });
+           
     }
    
     return (
@@ -51,7 +54,7 @@ function TodoNewItemForm({ todoCategories, onNewTodoFormSubmit}) {
                         {options}
                     </select>
                 </label>
-            <input type="submit" value="Add New Todo"></input>
+            <input type="submit" value="Add Todo"></input>
         </form>
         </div>
     )

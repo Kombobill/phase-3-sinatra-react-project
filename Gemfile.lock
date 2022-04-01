@@ -1,20 +1,21 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activemodel (6.1.4)
-      activesupport (= 6.1.4)
-    activerecord (6.1.4)
-      activemodel (= 6.1.4)
-      activesupport (= 6.1.4)
+    activemodel (5.2.7)
+      activesupport (= 5.2.7)
+    activerecord (5.2.7)
+      activemodel (= 5.2.7)
+      activesupport (= 5.2.7)
+      arel (>= 9.0)
     activerecord-reset-pk-sequence (0.2.1)
-    activesupport (6.1.4)
+    activesupport (5.2.7)
       concurrent-ruby (~> 1.0, >= 1.0.2)
-      i18n (>= 1.6, < 2)
-      minitest (>= 5.1)
-      tzinfo (~> 2.0)
-      zeitwerk (~> 2.3)
+      i18n (>= 0.7, < 2)
+      minitest (~> 5.1)
+      tzinfo (~> 1.1)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
+    arel (9.0.0)
     bcrypt (3.1.17)
     bond (0.5.1)
     capybara (3.36.0)
@@ -48,7 +49,7 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
-    minitest (5.14.4)
+    minitest (5.15.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
     nokogiri (1.13.3-x86_64-darwin)
@@ -113,24 +114,24 @@ GEM
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
       rack (>= 1, < 3)
+    thread_safe (0.3.6)
     tilt (2.0.10)
     tux (0.3.0)
       ripl (>= 0.3.5)
       ripl-multi_line (>= 0.2.4)
       ripl-rack (>= 0.2.0)
       sinatra (>= 1.2.1)
-    tzinfo (2.0.4)
-      concurrent-ruby (~> 1.0)
+    tzinfo (1.2.9)
+      thread_safe (~> 0.1)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.4.2)
 
 PLATFORMS
   x86_64-darwin-19
   x86_64-darwin-21
 
 DEPENDENCIES
-  activerecord (~> 6.1)
+  activerecord (~> 5.2)
   activerecord-reset-pk-sequence
   bcrypt
   capybara
@@ -148,7 +149,7 @@ DEPENDENCIES
   shotgun
   sinatra (~> 2.1)
   sinatra-activerecord (~> 2.0)
-  sqlite3 (~> 1.4)
+  sqlite3
   thin (~> 1.8)
   tux
 
