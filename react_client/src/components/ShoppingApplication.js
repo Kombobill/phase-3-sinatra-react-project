@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect, useContext} from "react"
+import { UserContext } from "./UserContext";
 import ShoppingList from "./ShoppingList"
 import "./ShoppingApplication.css"
 
@@ -7,6 +8,7 @@ function ShoppingApplication() {
     const [selectedCategory, setSelectedCategory] = useState("All")
     const [shoppingCategories, setShoppingCategories] = useState([])
     const [categoryNames, setCategoryNames] = useState([])
+    const {user, setUser} = useContext(UserContext);
 
     useEffect(() => {
         fetch("http://localhost:9292/shopping_items")

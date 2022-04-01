@@ -4,6 +4,7 @@ User.destroy_all
 User.reset_pk_sequence
 User.create(username: "EllenRipley", email_address: "ellen.ripley@protonmail.com", password: "1G4!cV5@XY8aY7S")
 User.create(username: "SarahConnor", email_address: "sarah.connor@protonmail.com", password: "F&59hvydM%r8yAN")
+User.create(username: "test", email_address: "test@email.com", password: "123")
 
 TodoCategory.destroy_all
 TodoCategory.reset_pk_sequence

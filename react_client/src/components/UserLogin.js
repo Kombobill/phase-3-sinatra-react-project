@@ -1,49 +1,31 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
+import {UserContext} from './UserContext'
+
 
 
 function UserLogin ({ login, error }) {
-
-    const [details, setDetails] = useState({email: "", password:""})
+   
+    const [details, setDetails] = useState({email_address: "", password:""})
+    const [message, setMessage] = useState("")
+    const {user, setUser} = useContext(UserContext);
+   
 
     function handleSubmit(event) {
         event.preventDefault()
-        console.log(details)
-
         login(details)
 
-        // let result = await fetch("http://localhost:9292/users", {
-        //     method: "POST",
-        //     headers: {
-        //       "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify({
-        //       email: newEmail,
-        //       password: newPassword
-        //     }),
-        //   })
-        //     .then((r) => r.json())
-        //     .then((loginData) => {
-                // onNewTodoFormSubmit(newTodo);
-                // setNewItemTitle("");
-                // console.log(loginData)
-            // };
-
-
+        if (user.username === "") {
+            setMessage("Credentials not found, please try again!")
+        }
     }
-
-  
-
-
-
     return (
-        
-
         <div>
             <h2>Sign into Account</h2>
-            {(error !== "") ? (<div className="error">{error}</div>) : ""}
+            {(!!error) ? (<div className="error">{error}</div>) : ""}
             <form onSubmit = {handleSubmit} className="new-login">
-               <label><input type="email" onChange={(e)=>setDetails({...details, email: e.target.value})} value={details.email} placeholder="email"></input></label>
+               <label><input type="email" onChange={(e)=>setDetails({...details, email_address: e.target.value})} value={details.email_address} placeholder="email"></input></label>
                 <input type="password" onChange={(e)=>setDetails({...details, password: e.target.value})} value={details.password} placeholder="password"></input><br></br><br></br>
+                <p>{message}</p>
                 <input type="submit" value="Log in"/>
             </form>
         </div>

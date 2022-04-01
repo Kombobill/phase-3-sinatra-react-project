@@ -1,13 +1,16 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect, useContext} from "react"
 import TodoList from "./TodoList"
 import "./TodoApplication.css";
+import { UserContext } from "./UserContext";
 
 
 function TodoApplication() {
-  const [todos, setTodos] = useState([])
-  const [selectedCategory, setSelectedCategory] = useState("All")
-  const [todoCategories, setTodoCategories] = useState([])
-  const [categoryNames, setCategoryNames] = useState([])
+  const [todos, setTodos] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [todoCategories, setTodoCategories] = useState([]);
+  const [categoryNames, setCategoryNames] = useState([]);
+  const {user, setUser} = useContext(UserContext);
+  
 
   useEffect(() => {
     fetch("http://localhost:9292/todos")

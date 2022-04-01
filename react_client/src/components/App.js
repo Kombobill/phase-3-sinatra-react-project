@@ -1,59 +1,74 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useMemo, useContext} from "react";
 import './App.css';
 import NavBar from "./NavBar";
 import TodoApplication from './TodoApplication';
 import ShoppingApplication from "./ShoppingApplication";
 import Home from "./Home"
-
 import { Route, Switch } from "react-router-dom"
+
+import {UserContext} from './UserContext'
+
+
+
 
 
 function App() {
 
+
   const [user, setUser] = useState({
-    username: "",
-    email: "",
-    budget: ""})
+      username: "",
+      email_address: "",
+      id: "",
+      budget: ""
+    })
+  const providerValue = useMemo(()=>({user, setUser}), [user, setUser])
 
   const [error, setError] = useState("")
-  const [retrievedData, setRetrievedData] = useState([])
+  const [errorMessage, setErrorMessage] = useState("")
 
 
-  function login(details) {
-    fetch("http://localhost:9292/users")
-      .then((r) => r.json())
-      .then(function(result) {
-        setRetrievedData(result)
-        });
-  
-      // const record = retrievedData.find(e => (e.email == details.email))
-      // console.log(`retrieved record: ${record}`)
-    
-      //   // console.log(record.password == details.password ? "password match!" : "wrong password!")
-
-      // if (record.password == details.password ) {setUser({
-      //       email: details.email,
-      //       username: record.username,
-      //       budget: record.budget
-      //     });}
-      
-      // if (record.password != details.password) {setError("Details do not match!")}
-      // console.log(record)
-
+  async function login(details) {
+    await fetch("http://localhost:9292/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(details)
+    })
+      .then((r) => {
+        
+        if (r.status === 200) {
+          r.json().then((data) => 
+          setUser({
+            username: data.username,
+            email_address: data.email_address,
+            id: data.id,
+            budget: data.budget,
+            todos: data
+          })
           
-  
+      )} else {
+        setUser({
+          username: "",
+          email_address: "",
+          id: "",
+          budget: ""
+        })
+      }
+    }) 
   }
-  
 
   function logout(){
     setUser({
       username: "",
-      email: "",
-      budget: ""});}
+      email_address: ""});}
+
+     
 
   return (
     <div className="App">
-     
+    <UserContext.Provider value={providerValue}>
+  
       <h1>List Metaverse</h1>
       <NavBar />
        <Switch>
@@ -66,9 +81,11 @@ function App() {
           </Route>
 
           <Route path="/">
-            <Home user={user} error={error} login={login} logout={logout}/>
+            <Home error={error} login={login} logout={logout}/>
           </Route>
       </Switch>
+
+    </UserContext.Provider>
     </div>
     
   );
