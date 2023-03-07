@@ -4,6 +4,8 @@ source "https://rubygems.org"
 # https://github.com/sinatra/sinatra
 gem "sinatra", "~> 2.1"
 
+ruby '2.7.4'
+
 # A fast and simple web server
 # https://github.com/macournoyer/thin
 gem "thin", "~> 1.8"
@@ -16,9 +18,11 @@ gem "rack-contrib", "~> 2.3"
 # https://github.com/cyu/rack-cors
 gem "rack-cors", "~> 1.1"
 
+gem 'bcrypt', '~> 3.1', '>= 3.1.18'
+
 # An object-relational mapper
 # https://guides.rubyonrails.org/active_record_basics.html
-gem "activerecord", "~> 5.2"
+gem "activerecord", "~> 6.1"
 
 # Configures common Rake tasks for working with Active Record
 # https://github.com/sinatra-activerecord/sinatra-activerecord
@@ -29,25 +33,14 @@ gem "sinatra-activerecord", "~> 2.0"
 gem "rake", "~> 13.0"
 
 # Provides functionality to interact with a SQLite3 database
-
+gem "sqlite3", "~> 1.4"
 
 # Require all files in a folder
 gem "require_all", "~> 3.0"
-
-gem "shotgun"
-gem "bcrypt"
-
-gem "faker"
-gem 'activerecord-reset-pk-sequence'
-
-
-
+gem 'puma', '~> 6.1'
 # These gems will only be used when we are running the application locally
 group :development do
   gem "pry", "~> 0.14.1"
-  gem 'sqlite3'
-  gem 'tux'
-
   # Automatically reload when there are changes
   # https://github.com/alexch/rerun
   gem "rerun"
@@ -56,7 +49,6 @@ end
 # These gems will only be used when we are running tests
 group :test do
   gem "database_cleaner", "~> 2.0"
-  gem "capybara"
   gem "rack-test", "~> 1.1"
   gem "rspec", "~> 3.10"
   gem "rspec-json_expectations", "~> 2.2"

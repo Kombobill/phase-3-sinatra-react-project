@@ -10,42 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_28_234607) do
+ActiveRecord::Schema.define(version: 2023_03_02_143106) do
 
-  create_table "shopping_categories", force: :cascade do |t|
-    t.string "name"
-  end
-
-  create_table "shopping_items", force: :cascade do |t|
+  create_table "projects", force: :cascade do |t|
     t.string "title"
-    t.integer "shopping_category_id"
-    t.float "price"
-    t.integer "amount"
+    t.string "description"
+    t.string "image_url"
+    t.string "project_status", default: "0"
+    t.string "project_Github_url"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
+    t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
-  create_table "todo_categories", force: :cascade do |t|
+  create_table "skills", force: :cascade do |t|
     t.string "name"
-  end
-
-  create_table "todos", force: :cascade do |t|
-    t.string "title"
-    t.integer "todo_category_id"
+    t.string "description"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "completed"
-    t.integer "user_id"
+    t.index ["user_id"], name: "index_skills_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "email_address"
-    t.string "password_digest"
-    t.float "budget"
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "email", null: false
+    t.string "password_digest", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "projects", "users"
+  add_foreign_key "skills", "users"
 end
